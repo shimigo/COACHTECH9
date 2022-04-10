@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+</head>
+
+<body>
+  <div id="app">
+    <div class="vue">
+      <ul class="tabs">
+        <li v-on:click="change('1')" v-bind:class="{'active': isActive === '1'}">タブ1</li>
+        <li v-on:click="change('2')" v-bind:class="{'active': isActive === '2'}">タブ2</li>
+        <li v-on:click="change('3')" v-bind:class="{'active': isActive === '3'}">タブ3</li>
+      </ul>
+
+      <ul class="contents">
+        <li v-if="isActive === '1'">コンテンツ1</li>
+        <li v-else-if="isActive === '2'">コンテンツ2</li>
+        <li v-else-if="isActive === '3'">コンテンツ3</li>
+      </ul>
+    </div>
+  </div>
+  <script>
+    new Vue({
+      el: '#app',
+      data: {
+        isActive: '1'
+      },
+      methods: {
+        change: function (num) {
+          this.isActive = num
+        }
+      }
+    })
+  </script>
+  <style>
+    ul {
+      margin: 10px;
+      padding: 0;
+    }
+
+    li {
+      list-style: none;
+    }
+
+    .tabs {
+      overflow: hidden;
+    }
+
+    .tabs li,
+    .tabs label {
+      float: left;
+      padding: 10px 20px;
+      border: 1px solid #ccc;
+    }
+
+    .tabs li.active,
+    .tabs :checked+label {
+      background-color: #000;
+      border-color: #000;
+      color: #fff;
+    }
+
+    .contents {
+      overflow: hidden;
+      margin-top: -1px;
+    }
+
+    .contents li {
+      width: 200px;
+      padding: 0;
+    }
+  </style>
+</body>
+
+</html>
